@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { formatTime } from "@/lib/formatTime";
 import { cn } from "@/lib/utils";
-import { useAudio } from "@/providers/audioProvider";
+import { useAudio } from "@/providers/AudioProvider";
 
 import { Progress } from "./ui/progress";
 

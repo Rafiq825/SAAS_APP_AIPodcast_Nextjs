@@ -10,7 +10,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import LoaderSpinner from './LoaderSpinner';
-import { useAudio } from '@/providers/audioProvider';
+import { useAudio } from '@/providers/AudioProvider';
 import { cn } from '@/lib/utils';
 
 const RightSidebar = () => {

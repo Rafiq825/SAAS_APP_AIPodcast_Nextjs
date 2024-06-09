@@ -1,38 +1,42 @@
-import { PodcastCardProps } from '@/types'
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import { Input } from './ui/input'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useDebounce } from '@/lib/useDebounce'
 
-const PodcastCard = ({
-  imgUrl, title, description, podcastId
-}: PodcastCardProps) => {
-  const router = useRouter()
+const Searchbar = () => {
+  const [search, setSearch] = useState('');
+  const router = useRouter(); 
+  const pathname = usePathname();
 
-  const handleViews = () => {
-    // increase views
+  const debouncedValue = useDebounce(search, 500);
 
-    router.push(`/podcasts/${podcastId}`, {
-      scroll: true
-    })
-  }
+  useEffect(() => {
+    if(debouncedValue) {
+      router.push(`/discover?search=${debouncedValue}`)
+    } else if (!debouncedValue && pathname === '/discover') router.push('/discover')
+  }, [router, pathname, debouncedValue])
 
   return (
-    <div className="cursor-pointer" onClick={handleViews}>
-      <figure className="flex flex-col gap-2">
-        <Image 
-          src={imgUrl}
-          width={174}
-          height={174}
-          alt={title}
-          className="aspect-square h-fit w-full rounded-xl 2xl:size-[200px]"
-        />
-        <div className="flex flex-col">
-          <h1 className="text-16 truncate font-bold text-white-1">{title}</h1>
-          <h2 className="text-12 truncate font-normal capitalize text-white-4">{description}</h2>
-        </div>
-      </figure>
+    <div className="relative mt-8 block">
+      <Input 
+        className="input-class py-6 pl-12 focus-visible:ring-offset-orange-1"
+        placeholder='Search for podcasts'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onLoad={() => setSearch('')}
+      />
+      <Image 
+        src="/icons/search.svg"
+        alt="search"
+        height={20}
+        width={20}
+        className="absolute left-4 top-3.5"
+      />
     </div>
   )
 }
 
-export default PodcastCard
+export default Searchbar
