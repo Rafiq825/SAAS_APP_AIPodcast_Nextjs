@@ -8,7 +8,7 @@ const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PodBot",
-  description: "PodBot - AI-Powered Podcast Creator",
+  description: "PodBot  AI-Powered Podcast Creator",
   icons: {
     icon: '/icons/logo.svg'
   }
