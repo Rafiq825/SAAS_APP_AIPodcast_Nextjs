@@ -19,6 +19,6 @@ PodBot is an AI-driven platform that allows users to generate podcast episodes a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/podbot.git
-   cd podbot
+   git clone https://github.com/Rafiq825/SAAS_APP_AIPodcast_Nextjs.git
+   cd SAAS_APP_AIPodcast_Nextjs
    ```
